@@ -1,11 +1,8 @@
 # Skills installed by scripts/install.sh
 # Format: path to a directory containing SKILL.md (one per line)
 #
-# When adding a skill:
-# 1. Create <path>/SKILL.md
-# 2. Add a line here
-# 3. Update <domain>/README.md
-# 4. Run ./scripts/install.sh
+# Cross-linked package members live under skills/<package>/.
+# Independent skills live directly under skills/.
 
 skills/project-management/project-bootstrap
 skills/project-management/status-ledger
@@ -13,6 +10,6 @@ skills/project-management/project-audit
 skills/project-management/ingest
 skills/interview
 skills/interview/reverse-brief
-skills/web-design/design-tool
-skills/writing/proofread
-skills/writing/plaintext
+skills/design-tool
+skills/proofread
+skills/plaintext

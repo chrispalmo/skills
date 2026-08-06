@@ -12,7 +12,7 @@ description: >-
 
 Scaffold the agent continuity stack from
 `skills/project-management/references/templates/` in this skills repository
-(resolve via the realpath of this skill's `SKILL.md`).
+(resolve via the real path of this skill's `SKILL.md`).
 
 Keep shared guidance in `AGENTS.md`. Cursor, Codex, and other compatible agents
 load it directly. Claude Code does not, so create a one-line `CLAUDE.md` import

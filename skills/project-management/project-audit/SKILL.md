@@ -10,33 +10,32 @@ description: >-
 
 # Project Audit
 
-Score repos against `skills/project-management/references/audit-rubric.md`
-in this skills repository (resolve via the realpath of this skill's `SKILL.md`).
+Score repos against `skills/project-management/references/audit-rubric.md` in this skills repository (resolve via the real path of this skill's `SKILL.md`).
 
 ## Checklist (weighted)
 
 Weights are slices of a **100-point** total (not per-item grades).
 
-| # | Artifact | Weight |
-|---|----------|--------|
-| A1 | README | 5 |
-| A2 | VISION or equivalent | 10 |
-| A3 | IMPLEMENTATION_PLAN | 10 |
-| A4 | **IMPLEMENTATION_STATUS** | **25** |
-| A5 | AGENTS.md startup + doc authority | 15 |
-| A6 | AGENTS.md handoff | 15 |
-| A7 | Decision log | 10 |
-| A8 | Research/docs | 5 |
-| A9 | Workflow skill | 5 |
-| | **Total** | **100** |
+| #   | Artifact                          | Weight  |
+| --- | --------------------------------- | ------- |
+| A1  | README                            | 5       |
+| A2  | VISION or equivalent              | 10      |
+| A3  | IMPLEMENTATION_PLAN               | 10      |
+| A4  | **IMPLEMENTATION_STATUS**         | **25**  |
+| A5  | AGENTS.md startup + doc authority | 15      |
+| A6  | AGENTS.md handoff                 | 15      |
+| A7  | Decision log                      | 10      |
+| A8  | Research/docs                     | 5       |
+| A9  | Workflow skill                    | 5       |
+|     | **Total**                         | **100** |
 
 ## Scoring model
 
-| Symbol | Meaning | Points earned |
-|--------|---------|---------------|
-| ✓ / 🟢 | present and adequate | **full** weight |
+| Symbol | Meaning                         | Points earned                               |
+| ------ | ------------------------------- | ------------------------------------------- |
+| ✓ / 🟢 | present and adequate            | **full** weight                             |
 | ~ / 🟡 | partial / acceptable equivalent | **~half** weight (round to nearest integer) |
-| — / 🔴 | missing | **0** |
+| — / 🔴 | missing                         | **0**                                       |
 
 Always show both points and percent of total in Earned, e.g. `🟢 10 (10%)`, `🟡 15 (15%)`, `🔴 0 (0%)`.
 
@@ -67,40 +66,43 @@ repos and completed tools with no ongoing work as **Skip**.
 
 ## Equivalents (partial credit)
 
-| Standard | Acceptable equivalent |
-|----------|----------------------|
-| VISION | `docs/vision.md`, `audit-charter.md` |
-| STATUS | `state/STATUS.md`, `audit-status.md`, living plan current state |
-| PLAN | `PLAN.md`, `docs/implementation-plan.md` |
+| Standard       | Acceptable equivalent                                                                 |
+| -------------- | ------------------------------------------------------------------------------------- |
+| VISION         | `docs/vision.md`, `audit-charter.md`                                                  |
+| STATUS         | `state/STATUS.md`, `audit-status.md`, living plan current state                       |
+| PLAN           | `PLAN.md`, `docs/implementation-plan.md`                                              |
 | AGENTS handoff | Vendor rule files that duplicate handoff, scored partial until moved into `AGENTS.md` |
 
 ## Output format
 
 ```markdown
 # Audit: <project>
+
 **Tier:** <Full|Partial|Minimal|Skip> (<earned> / 100)
 **Variant:** <greenfield|consulting|container|meta|minimal|tool>
 **Compatibility:** AGENTS.md <present|missing>; Claude bridge <present|missing|not targeted>
 
 Scoring: each row’s **Weight** is its share of 100. **Earned** counts toward the total (🟢 ✓ = full, 🟡 ~ ≈ half, 🔴 — = 0).
 
-| # | Artifact | Weight | Found | Earned |
-|---|----------|--------|-------|--------|
-| A1 | README | 5 | ✓|~|— <short note> | 🟢|🟡|🔴 <points> (<points>%) |
-| A2 | VISION | 10 | ... | ... |
-| A3 | IMPLEMENTATION_PLAN | 10 | ... | ... |
-| A4 | IMPLEMENTATION_STATUS | 25 | ... | ... |
-| A5 | AGENTS.md startup + authority | 15 | ... | ... |
-| A6 | AGENTS.md handoff | 15 | ... | ... |
-| A7 | Decision log | 10 | ... | ... |
-| A8 | Research/docs | 5 | ... | ... |
-| A9 | Workflow skill | 5 | ... | ... |
-| | **Total** | **100** | | **🟢|🟡|🔴 <earned> (<earned>%)** |
+| #   | Artifact                      | Weight  | Found | Earned |
+| --- | ----------------------------- | ------- | ----- | ------ | -------------- | --------------------------- | --- | ----------------------- |
+| A1  | README                        | 5       | ✓     | ~      | — <short note> | 🟢                          | 🟡  | 🔴 <points> (<points>%) |
+| A2  | VISION                        | 10      | ...   | ...    |
+| A3  | IMPLEMENTATION_PLAN           | 10      | ...   | ...    |
+| A4  | IMPLEMENTATION_STATUS         | 25      | ...   | ...    |
+| A5  | AGENTS.md startup + authority | 15      | ...   | ...    |
+| A6  | AGENTS.md handoff             | 15      | ...   | ...    |
+| A7  | Decision log                  | 10      | ...   | ...    |
+| A8  | Research/docs                 | 5       | ...   | ...    |
+| A9  | Workflow skill                | 5       | ...   | ...    |
+|     | **Total**                     | **100** |       | \*\*🟢 | 🟡             | 🔴 <earned> (<earned>%)\*\* |
 
 ## Gaps (priority)
+
 1. ...
 2. ...
 
 ## Next
+
 Invoke `project-bootstrap` to close gaps (omit if Skip / already Full).
 ```

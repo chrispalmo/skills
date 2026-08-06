@@ -36,7 +36,7 @@ Only when the user asks to add or park the first speculative item:
 
 1. Create `EXPLORATION_BACKLOG.md` from
    `skills/project-management/references/templates/EXPLORATION_BACKLOG.md`
-   in this skills repository (resolve via the realpath of this skill's `SKILL.md`).
+   in this skills repository (resolve via the real path of this skill's `SKILL.md`).
 2. Wire handoff guidance in `AGENTS.md`: add a short note that the backlog is
    non-canonical and surfaced only on an explicit status review or project
    closeout.
@@ -55,23 +55,23 @@ Do **not** mention `EXPLORATION_BACKLOG.md` at session start, during normal impl
 Bring it up only when:
 
 1. **Status check** — the user asks for progress/status, or you run an explicit STATUS review
-2. **Project closeout** — wrapping the project or a major phase; ask what to do with parked ideas (promote to PLAN, keep, or delete)
+2. **Project closeout** — wrapping the project or a major phase; ask what to do with parked ideas (promote to PLAN,keep, or delete)
 
 ## Session end
 
 After authorized work changes execution state, evidence, decisions, risks, or
 the next action, update the affected sections:
 
-| Section | Action |
-|---------|--------|
-| Header | Date, focus, next item, one-liner |
-| Checklist | Status + evidence column |
-| Gates | When kill criteria measured |
-| Decision log | Dated rows with docs updated |
-| Deviations | If scope diverged from PLAN |
-| Metrics | If numbers changed |
-| Verification | Commands run |
-| Risks | New blockers |
+| Section      | Action                            |
+| ------------ | --------------------------------- |
+| Header       | Date, focus, next item, one-liner |
+| Checklist    | Status + evidence column          |
+| Gates        | When kill criteria measured       |
+| Decision log | Dated rows with docs updated      |
+| Deviations   | If scope diverged from PLAN       |
+| Metrics      | If numbers changed                |
+| Verification | Commands run                      |
+| Risks        | New blockers                      |
 
 Do not edit STATUS after read-only questions, reviews, or audits that discover
 no durable project change.
@@ -90,8 +90,7 @@ no durable project change.
 ## If STATUS missing
 
 Invoke `project-bootstrap` first, or create from
-`skills/project-management/references/templates/IMPLEMENTATION_STATUS.md`
-in this skills repository.
+`skills/project-management/references/templates/IMPLEMENTATION_STATUS.md` in this skills repository.
 
 ## Enforced by
 

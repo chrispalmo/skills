@@ -1,50 +1,65 @@
 # skills
 
-Central repository of Agent Skills (`SKILL.md`) plus an install registry that publishes them to **Cursor**, **Claude Code**, and **OpenAI Codex**.
+Central repository of Agent Skills (`SKILL.md`) for **Cursor**, **Claude Code**,
+and **OpenAI Codex**.
 
 ## Layout
 
 ```text
 skills/
-├── skills.manifest
-├── scripts/install.sh
-├── scripts/uninstall.sh
-├── README.md
-├── AGENTS.md                  # canonical contributor guidance
-├── CLAUDE.md                  # Claude Code import of AGENTS.md
+├── skills.manifest        # every installable skill
+├── packages.manifest      # members of cross-linked packages
+├── scripts/
+│   ├── install.sh
+│   └── uninstall.sh
 └── skills/
-    ├── project-management/
-    ├── interview/
-    ├── web-design/
-    └── writing/
+    ├── project-management/ # cross-linked package
+    ├── interview/          # cross-linked package
+    ├── design-tool/        # independent skill
+    ├── plaintext/          # independent skill
+    └── proofread/          # independent skill
 ```
 
-## Quick start
+Folders that group multiple skills are packages, not categories. Independent skills live directly under `skills/`.
+
+## Install
 
 ```bash
 ./scripts/install.sh
 ```
 
-Symlinks every registered skill into the default global roots:
+This symlinks every registered skill for all three supported agents. Keep the clone on disk because the links point back to it.
 
-| Agent                              | Default path        |
-| ---------------------------------- | ------------------- |
-| Cursor                             | `~/.cursor/skills/` |
-| Claude Code                        | `~/.claude/skills/` |
-| Codex (and Cursor also reads this) | `~/.agents/skills/` |
+| User skill directory | Popular agents that read it | Installer option        |
+| -------------------- | --------------------------- | ----------------------- |
+| `~/.agents/skills/`  | OpenAI Codex and Cursor     | `--agents` or `--codex` |
+| `~/.claude/skills/`  | Claude Code                 | `--claude`              |
+| `~/.cursor/skills/`  | Cursor                      | `--cursor`              |
 
-Keep this clone on disk — installs are symlinks back into the repo.
+The default `--all` writes to `~/.agents/skills` and `~/.claude/skills`. Cursor already reads `~/.agents/skills`, so writing the same skills to `~/.cursor/skills` as well would expose duplicates.
 
 ### Install options
 
 ```bash
-./scripts/install.sh --cursor   # Cursor only
-./scripts/install.sh --claude   # Claude Code only
-./scripts/install.sh --agents   # ~/.agents/skills only
-./scripts/uninstall.sh          # remove this repo's links from all three
+./scripts/install.sh --all
+./scripts/install.sh --cursor
+./scripts/install.sh --claude
+./scripts/install.sh --agents
+./scripts/install.sh --package project-management
+./scripts/install.sh --package interview --cursor
 ```
 
-Custom locations (skills stored somewhere else):
+Installation is intentionally either **all skills** or a complete
+**cross-linked package**. Arbitrary single-skill installation is not supported: it would make package dependencies unclear and turn the installer into a dependency resolver.
+
+Uninstall uses the same target and package options:
+
+```bash
+./scripts/uninstall.sh
+./scripts/uninstall.sh --package interview --cursor
+```
+
+Custom roots:
 
 ```bash
 CURSOR_SKILLS=/other/skills ./scripts/install.sh --cursor
@@ -52,20 +67,20 @@ CLAUDE_SKILLS=/other/skills ./scripts/install.sh --claude
 AGENTS_SKILLS=/other/skills ./scripts/install.sh --agents
 ```
 
+### Existing and built-in skills
+
+The installer preflights the whole operation before creating links. It is idempotent for links already created from this clone, but aborts on an existing directory or foreign symlink instead of overwriting another skill.
+
+Bundled skills are managed separately and are never modified. Name collisions can still be ambiguous: Claude Code user skills override bundled skills with the same name, while Codex can show user and system skills side by side. Cursor's duplicate-name precedence is not documented.
+
 ### Windows
 
-Use **WSL** or **Git Bash**. The installer needs a Unix shell and symlink  
-support (Developer Mode or equivalent may be required on native Windows).
+Use **WSL** or **Git Bash**. The installer requires a Unix shell and symlink support; native Windows may require Developer Mode.
 
-## Adding a skill domain
+## Adding skills and packages
 
-```text
-skills/<domain>/
-├── README.md
-├── <skill-name>/SKILL.md
-└── references/          # optional shared templates / rubrics
-```
-
-1. Add `skills/<domain>/<skill-name>` to `skills.manifest`
-2. Update the domain README
-3. Run `./scripts/install.sh`
+- Add every skill path to `skills.manifest`.
+- Put an independent skill at `skills/<skill-name>/SKILL.md`.
+- Use `skills/<package>/` only for cross-linked skills and shared references.
+- Add every package member to `packages.manifest` and maintain its package
+  README.
