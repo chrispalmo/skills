@@ -1,0 +1,17 @@
+# Skills installed by scripts/install.sh
+# Format: path to a directory containing SKILL.md (one per line)
+#
+# When adding a skill:
+# 1. Create <path>/SKILL.md
+# 2. Add a line here
+# 3. Update <domain>/README.md
+# 4. Run ./scripts/install.sh
+
+skills/project-management/project-bootstrap
+skills/project-management/status-ledger
+skills/project-management/project-audit
+skills/interview
+skills/interview/reverse-brief
+skills/web-design/design-tool
+skills/writing/proofread
+skills/writing/plaintext

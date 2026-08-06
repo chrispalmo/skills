@@ -1,0 +1,15 @@
+---
+description: Canonical project context — points agents at root docs
+alwaysApply: true
+---
+
+# Project Context
+
+Before making changes, consult:
+
+- `VISION.md` — scope, non-goals, kill criteria
+- `IMPLEMENTATION_PLAN.md` — phased roadmap
+- `IMPLEMENTATION_STATUS.md` — current truth, evidence, decisions
+- `AGENTS.md` — operating procedures
+
+Keep changes aligned with current phase in `IMPLEMENTATION_STATUS.md`.
