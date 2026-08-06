@@ -37,13 +37,16 @@ Only when the user asks to add or park the first speculative item:
 1. Create `EXPLORATION_BACKLOG.md` from
    `skills/project-management/references/templates/EXPLORATION_BACKLOG.md`
    in this skills repository (resolve via the realpath of this skill's `SKILL.md`).
-2. Wire the existing project handoff guidance: add a conditional note to
-   `.cursor/rules/agent-handoff.mdc`, or `AGENTS.md` when that rule is absent,
-   stating that the backlog is non-canonical and surfaced only on an explicit
-   status review or project closeout.
+2. Wire handoff guidance in `AGENTS.md`: add a short note that the backlog is
+   non-canonical and surfaced only on an explicit status review or project
+   closeout.
 3. Append the requested item.
 
-If the file already exists, append the item without duplicating the guidance.
+Check the file and guidance independently:
+
+- If the backlog is missing, create it.
+- If the `AGENTS.md` guidance is missing, add it.
+- Append the item without duplicating either artifact.
 
 ## Exploration backlog (when to surface)
 
@@ -54,9 +57,10 @@ Bring it up only when:
 1. **Status check** — the user asks for progress/status, or you run an explicit STATUS review
 2. **Project closeout** — wrapping the project or a major phase; ask what to do with parked ideas (promote to PLAN, keep, or delete)
 
-## Session end (mandatory)
+## Session end
 
-Update these sections:
+After authorized work changes execution state, evidence, decisions, risks, or
+the next action, update the affected sections:
 
 | Section | Action |
 |---------|--------|
@@ -68,6 +72,9 @@ Update these sections:
 | Metrics | If numbers changed |
 | Verification | Commands run |
 | Risks | New blockers |
+
+Do not edit STATUS after read-only questions, reviews, or audits that discover
+no durable project change.
 
 ## Status vocabulary
 
@@ -88,5 +95,6 @@ in this skills repository.
 
 ## Enforced by
 
-`.cursor/rules/agent-handoff.mdc` (alwaysApply: true) in the target project
-when that rule was installed by `project-bootstrap`.
+The target project's canonical `AGENTS.md` session workflow. Claude Code reaches
+the same instructions through the project's `CLAUDE.md` import shim. Use the
+**status-ledger** skill for the full procedure.

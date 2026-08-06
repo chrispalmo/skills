@@ -1,5 +1,9 @@
 # Agent guide — [project name]
 
+Canonical shared instructions for coding agents. Cursor, Codex, and other
+AGENTS.md-compatible tools load this file directly; Claude Code loads it through
+the `CLAUDE.md` import shim.
+
 ## Startup checklist
 
 1. Read `IMPLEMENTATION_STATUS.md` first — **Current focus**, **Next work item**, blockers
@@ -20,12 +24,31 @@
 
 ### At session start
 
-- Read STATUS header and fresh-agent one-liner
-- Do not redo work marked `done` unless evidence is missing
+1. Read `IMPLEMENTATION_STATUS.md` — **Current focus**, **Next work item**, blockers, deviations
+2. Skim `VISION.md` if scope unclear
+3. Do not redo `done` items unless evidence is invalid
 
 ### Before ending session
 
-Update `IMPLEMENTATION_STATUS.md` per `.cursor/rules/agent-handoff.mdc`.
+After authorized work changes execution state, evidence, decisions, risks, or
+the next action, update `IMPLEMENTATION_STATUS.md`:
+
+| Section | Action |
+| ------- | ------ |
+| Header | Refresh **Last reviewed**, **Current focus**, **Next work item** |
+| Phase checklist | Set status + **Evidence** (paths, commands, commit SHAs) |
+| Phase gates | Update when kill-criterion evidence exists |
+| Decision log | Add dated decisions with docs touched |
+| Deviations | Record plan changes |
+| Metrics snapshot | Fill after measured runs |
+| Open risks | Add new blockers |
+
+If blocked without code changes, set row to `blocked` with named **Blocker / next action**.
+
+Do not edit STATUS after read-only questions, reviews, or audits that discover
+no durable project change.
+
+Prefer the **status-ledger** skill for ledger maintenance when available.
 
 ## Build / test commands
 

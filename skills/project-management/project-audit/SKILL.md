@@ -2,8 +2,8 @@
 name: project-audit
 description: >-
   Audits a repository's project management maturity against the agent continuity
-  standard — scoring README, VISION, PLAN, STATUS, AGENTS, cursor rules, and
-  decision tracking. Produces tier rating and retrofit recommendations. Use when
+  standard — scoring README, VISION, PLAN, STATUS, AGENTS.md, and decision
+  tracking. Produces tier rating and retrofit recommendations. Use when
   assessing project docs, comparing repos, planning retrofits, or before
   bootstrapping a new project structure.
 ---
@@ -23,12 +23,11 @@ Weights are slices of a **100-point** total (not per-item grades).
 | A2 | VISION or equivalent | 10 |
 | A3 | IMPLEMENTATION_PLAN | 10 |
 | A4 | **IMPLEMENTATION_STATUS** | **25** |
-| A5 | AGENTS.md | 10 |
-| A6 | project-context.mdc | 10 |
-| A7 | agent-handoff.mdc | 10 |
-| A8 | Decision log | 10 |
-| A9 | Research/docs | 5 |
-| A10 | Cursor skill | 5 |
+| A5 | AGENTS.md startup + doc authority | 15 |
+| A6 | AGENTS.md handoff | 15 |
+| A7 | Decision log | 10 |
+| A8 | Research/docs | 5 |
+| A9 | Workflow skill | 5 |
 | | **Total** | **100** |
 
 ## Scoring model
@@ -50,13 +49,21 @@ Always show both points and percent of total in Earned, e.g. `🟢 10 (10%)`, `�
 
 ## Audit steps
 
-1. List root + `.cursor/` files
+1. List root docs (`README`, `VISION`, `PLAN`, `STATUS`, `AGENTS.md`)
 2. Grep for VISION, PLAN, STATUS, AGENTS, handoff
 3. Spot-read STATUS quality (evidence columns? decision log? one-liner?)
-4. Score each artifact ✓ / ~ / —
-5. Compute earned points (full / ~half / 0 of each weight); sum out of 100
-6. Assign tier + variant recommendation
-7. List gaps in priority order
+4. Spot-read `AGENTS.md` for startup checklist, documentation authority, and
+   session-end STATUS protocol
+5. Report compatibility separately: whether `CLAUDE.md` imports `@AGENTS.md`
+   when Claude Code is in scope, and whether vendor files duplicate shared rules
+6. Score each artifact ✓ / ~ / —
+7. Compute earned points (full / ~half / 0 of each weight); sum out of 100
+8. Assign tier + variant recommendation
+9. List gaps in priority order (prefer folding shared rules into `AGENTS.md`)
+
+Cap the tier at **Partial** when STATUS or the decision log is missing or
+inadequate, regardless of numeric score. Classify intentional frozen/minimal
+repos and completed tools with no ongoing work as **Skip**.
 
 ## Equivalents (partial credit)
 
@@ -65,6 +72,7 @@ Always show both points and percent of total in Earned, e.g. `🟢 10 (10%)`, `�
 | VISION | `docs/vision.md`, `audit-charter.md` |
 | STATUS | `state/STATUS.md`, `audit-status.md`, living plan current state |
 | PLAN | `PLAN.md`, `docs/implementation-plan.md` |
+| AGENTS handoff | Vendor rule files that duplicate handoff, scored partial until moved into `AGENTS.md` |
 
 ## Output format
 
@@ -72,6 +80,7 @@ Always show both points and percent of total in Earned, e.g. `🟢 10 (10%)`, `�
 # Audit: <project>
 **Tier:** <Full|Partial|Minimal|Skip> (<earned> / 100)
 **Variant:** <greenfield|consulting|container|meta|minimal|tool>
+**Compatibility:** AGENTS.md <present|missing>; Claude bridge <present|missing|not targeted>
 
 Scoring: each row’s **Weight** is its share of 100. **Earned** counts toward the total (🟢 ✓ = full, 🟡 ~ ≈ half, 🔴 — = 0).
 
@@ -81,12 +90,11 @@ Scoring: each row’s **Weight** is its share of 100. **Earned** counts toward t
 | A2 | VISION | 10 | ... | ... |
 | A3 | IMPLEMENTATION_PLAN | 10 | ... | ... |
 | A4 | IMPLEMENTATION_STATUS | 25 | ... | ... |
-| A5 | AGENTS.md | 10 | ... | ... |
-| A6 | project-context.mdc | 10 | ... | ... |
-| A7 | agent-handoff.mdc | 10 | ... | ... |
-| A8 | Decision log | 10 | ... | ... |
-| A9 | Research/docs | 5 | ... | ... |
-| A10 | Cursor skill | 5 | ... | ... |
+| A5 | AGENTS.md startup + authority | 15 | ... | ... |
+| A6 | AGENTS.md handoff | 15 | ... | ... |
+| A7 | Decision log | 10 | ... | ... |
+| A8 | Research/docs | 5 | ... | ... |
+| A9 | Workflow skill | 5 | ... | ... |
 | | **Total** | **100** | | **🟢|🟡|🔴 <earned> (<earned>%)** |
 
 ## Gaps (priority)

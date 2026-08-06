@@ -1,24 +1,31 @@
 ---
-
-## name: interview
-
+name: interview
 description: >-
-Run a structured, multi-turn interview to gather missing context for a decision or another skill's workflow. Use when the user invokes /interview directly (e.g. /interview 10 questions 2 rounds) and wants adaptive questioning before work continues.
+  Runs a structured, multi-turn interview to gather missing context for a
+  decision or another skill's workflow. Use when the user directly invokes the
+  interview skill and wants adaptive questioning before work continues.
 disable-model-invocation: true
+---
 
 # Interview
+
+This is a user-invoked workflow. Do not start it from ambient context, even when
+an agent ignores the `disable-model-invocation` metadata extension.
 
 Gather context efficiently across N rounds. Do not run `reverse-brief` unless
 the user invokes it.
 
 ## Start
 
-1. Parse overrides from the invocation. Defaults: **2 rounds**, **10 questions per round**. Examples: `/interview 10 questions 2 rounds`, `/interview 15 questions`, `/interview 3 rounds`.
+1. Parse optional arguments from the invocation, independent of agent syntax.
+   Defaults: **2 rounds**, **10 questions per round**. Examples of argument
+   text: `10 questions 2 rounds`, `15 questions`, `3 rounds`.
 2. Infer the subject, pending decisions, and originating skill from the conversation.
 3. Reuse facts already provided; do not ask the user to repeat them.
 4. State the interview subject, planned rounds, and questions-per-round in one short line, then begin Round 1 immediately.
 5. If no subject can be inferred, make the first round establish it. Do not spend a turn asking one setup question.
-6. Tell the user they may say `DONE` or `STOP` to end, or optionally invoke`reverse-brief` to end and inspect the handoff.
+6. Tell the user they may say `DONE` or `STOP` to end, or optionally invoke
+   `reverse-brief` to end and inspect the handoff.
 
 ## Interview protocol
 

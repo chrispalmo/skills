@@ -24,17 +24,15 @@ project/
 ├── VISION.md
 ├── IMPLEMENTATION_PLAN.md
 ├── IMPLEMENTATION_STATUS.md    ← MANDATORY
-├── AGENTS.md
-└── .cursor/rules/
-    ├── project-context.mdc
-    └── agent-handoff.mdc
+├── AGENTS.md                   ← canonical startup + session handoff
+└── CLAUDE.md                   ← imports AGENTS.md for Claude Code
 ```
 
 Add as needed: `docs/`, `TESTING_STRATEGY.md`, domain specs.
 
 Do not bootstrap `EXPLORATION_BACKLOG.md`. If asked to park a speculative item,
 `status-ledger` creates it in the existing project and wires its conditional
-handoff guidance.
+handoff guidance into `AGENTS.md`.
 
 ---
 
@@ -47,7 +45,8 @@ engagement/
 ├── audit-charter.md          # replaces VISION
 ├── audit-status.md           # replaces IMPLEMENTATION_STATUS
 ├── backlog/items.jsonl       # machine-readable work queue
-└── evidence/                 # dated snapshots
+├── evidence/                 # dated snapshots
+└── CLAUDE.md                 # imports AGENTS.md for Claude Code
 ```
 
 ---
@@ -58,6 +57,7 @@ engagement/
 container/
 ├── README.md                 # layout, nested-git rules
 ├── AGENTS.md                 # startup checklist, cross-repo sync
+├── CLAUDE.md                 # imports AGENTS.md for Claude Code
 └── .vscode/settings.json     # git.autoRepositoryDetection: subFolders
 ```
 
@@ -83,8 +83,12 @@ meta-project/
 ├── README.md
 ├── PLAN.md                   # can serve PLAN + partial STATUS
 ├── FRAMEWORK-LOG.md          # process iteration log
-└── .cursor/skills/           # pipeline automation
+├── AGENTS.md                 # startup + documentation authority
+└── CLAUDE.md                 # imports AGENTS.md for Claude Code
 ```
+
+Optional: project-local Agent Skills under a vendor skill directory if the team
+uses them (not required for the PM stack).
 
 ---
 
@@ -99,19 +103,24 @@ project/
 
 ## Completed tool / utility
 
+If the tool is complete and has no ongoing work, classify it **Skip** in
+`project-audit`:
+
 ```
 tool/
 ├── README.md                 # usage + phase completion table
-├── docs/IMPLEMENTATION-PLAN.md
-└── .cursor/skills/           # if agents use it
+└── docs/IMPLEMENTATION-PLAN.md
 ```
 
-Add lightweight STATUS only if ongoing maintenance expected.
+If ongoing maintenance is expected, add lightweight
+`IMPLEMENTATION_STATUS.md`, `AGENTS.md`, and the `CLAUDE.md` import shim, then
+apply the standard rubric.
 
 ---
 
 ## What NOT to include by default
 
+- Vendor-only rule trees as required artifacts
 - Formal ADR directories
 - Memory Bank 6-file structure
 - docflow CONVENTIONS + audit CI

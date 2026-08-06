@@ -10,7 +10,8 @@ skills/
 ├── scripts/install.sh
 ├── scripts/uninstall.sh
 ├── README.md
-├── AGENTS.md
+├── AGENTS.md                  # canonical contributor guidance
+├── CLAUDE.md                  # Claude Code import of AGENTS.md
 └── skills/
     ├── project-management/
     ├── interview/
