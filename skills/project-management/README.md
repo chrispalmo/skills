@@ -1,20 +1,24 @@
 # Project management skills
 
-Three complementary Agent Skills for AI-assisted solo development.
+Four complementary Agent Skills for AI-assisted solo development.
 
 ## Skills
 
-| Skill                                           | Purpose                                  | When                         |
-| ----------------------------------------------- | ---------------------------------------- | ---------------------------- |
-| [project-bootstrap](project-bootstrap/SKILL.md) | Scaffold VISION/PLAN/STATUS/AGENTS       | New project or retrofit      |
-| [status-ledger](status-ledger/SKILL.md)         | Maintain IMPLEMENTATION_STATUS.md        | Every work session           |
-| [project-audit](project-audit/SKILL.md)         | Score repo maturity, list gaps           | Before bootstrap or retrofit |
+| Skill                                           | Purpose                                    | When                         |
+| ----------------------------------------------- | ------------------------------------------ | ---------------------------- |
+| [project-bootstrap](project-bootstrap/SKILL.md) | Scaffold VISION/PLAN/STATUS/AGENTS         | New project or retrofit      |
+| [status-ledger](status-ledger/SKILL.md)         | Maintain IMPLEMENTATION_STATUS.md          | Every work session           |
+| [project-audit](project-audit/SKILL.md)         | Score repo maturity, list gaps             | Before bootstrap or retrofit |
+| [ingest](ingest/SKILL.md)                       | Reconcile dumps into durable project state | New information or documents |
 
 ## Workflow
 
 ```text
-project-audit  →  project-bootstrap  →  status-ledger (ongoing)
-   assess            scaffold              maintain
+project-audit  →  project-bootstrap
+   assess            scaffold
+                         ↓
+                ingest ↔ status-ledger
+                reconcile    maintain
 ```
 
 ## References
@@ -24,7 +28,6 @@ project-audit  →  project-bootstrap  →  status-ledger (ongoing)
 | [templates/](references/templates/)           | project-bootstrap |
 | [audit-rubric.md](references/audit-rubric.md) | project-audit     |
 | [variants.md](references/variants.md)         | project-bootstrap |
-| [decisions.md](references/decisions.md)       | all three         |
 
 ## Core pattern
 
@@ -33,8 +36,8 @@ project-audit  →  project-bootstrap  →  status-ledger (ongoing)
 | `VISION.md`                | Scope filter, non-goals                         |
 | `IMPLEMENTATION_PLAN.md`   | Phased roadmap                                  |
 | `IMPLEMENTATION_STATUS.md` | **Living ledger** — status, evidence, decisions |
-| `AGENTS.md`                | Canonical agent onboarding and session handoff    |
-| `CLAUDE.md`                | One-line Claude Code import of `AGENTS.md`         |
+| `AGENTS.md`                | Canonical agent onboarding and session handoff  |
+| `CLAUDE.md`                | One-line Claude Code import of `AGENTS.md`      |
 
 `IMPLEMENTATION_STATUS.md` is mandatory. Everything else is project-type
 dependent. Keep shared guidance in `AGENTS.md`; use the `CLAUDE.md` import shim
