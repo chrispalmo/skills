@@ -16,6 +16,7 @@ skills/
     ├── project-management/ # cross-linked package
     ├── interview/          # cross-linked package
     ├── design-tool/        # independent skill
+    ├── github-init/        # independent skill
     ├── plaintext/          # independent skill
     └── proofread/          # independent skill
 ```
