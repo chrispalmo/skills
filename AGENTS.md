@@ -14,12 +14,12 @@ publishes them to Cursor, Claude Code, and OpenAI Codex.
 
 ## Documentation authority
 
-| Question | Source of truth |
-| -------- | --------------- |
-| What skills exist? | `skills.manifest` |
+| Question                    | Source of truth                      |
+| --------------------------- | ------------------------------------ |
+| What skills exist?          | `skills.manifest`                    |
 | What skills form a package? | `packages.manifest` + package README |
-| Skill instructions | each skill's `SKILL.md` |
-| Templates and rubrics | `skills/<package>/references/` |
+| Skill instructions          | each skill's `SKILL.md`              |
+| Templates and rubrics       | `skills/<package>/references/`       |
 
 ## Adding or removing a skill
 
@@ -33,6 +33,12 @@ Do not edit skill lists inside `scripts/` — the manifests are the registry.
 Nested grouping folders under `skills/` are package roots, never categories;
 independent skills are top-level `skills/<name>/`. Single-skill install is not
 supported.
+
+## Cross-agent compatibility
+
+All new and changed skills, references, scripts, manifests, and documentation must support Cursor, Claude Code, and OpenAI Codex.
+
+Keep shared instructions vendor-neutral. If an agent requires different instructions, document the difference explicitly and provide an equivalent path for the other supported agents.
 
 ## Installing skills
 

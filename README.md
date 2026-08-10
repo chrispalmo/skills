@@ -79,6 +79,7 @@ Use **WSL** or **Git Bash**. The installer requires a Unix shell and symlink sup
 
 ## Adding skills and packages
 
+- All new and changed skills, references, scripts, manifests, and documentation must support Cursor, Claude Code, and OpenAI Codex. Keep shared behavior vendor-neutral; explicitly scope unavoidable vendor-specific behavior and provide equivalent instructions for the other supported agents where applicable.
 - Add every skill path to `skills.manifest`.
 - Put an independent skill at `skills/<skill-name>/SKILL.md`.
 - Use `skills/<package>/` only for cross-linked skills and shared references.
