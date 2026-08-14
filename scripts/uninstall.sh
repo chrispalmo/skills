@@ -108,10 +108,13 @@ for dest_root in "${TARGETS[@]}"; do
     expected="$REPO_ROOT/$path/SKILL.md"
     dest_dir="$dest_root/$skill_name"
     dest="$dest_dir/SKILL.md"
-    if [[ -L "$dest" && "$(readlink "$dest")" == "$expected" ]]; then
-      rm "$dest"
-      rmdir "$dest_dir" 2>/dev/null || true
-      info "removed $skill_name from $dest_root"
+    if [[ -L "$dest" ]]; then
+      target="$(readlink "$dest")"
+      if [[ "$target" == "$expected" || "$target" == "$REPO_ROOT"/* ]]; then
+        rm "$dest"
+        rmdir "$dest_dir" 2>/dev/null || true
+        info "removed $skill_name from $dest_root"
+      fi
     fi
   done
 done

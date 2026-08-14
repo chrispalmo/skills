@@ -11,6 +11,11 @@ publishes them to Cursor, Claude Code, and OpenAI Codex.
 4. Package skill: `skills/<package>/<skill-name>/SKILL.md`
 5. Package overview and shared files: `skills/<package>/README.md` and
    `skills/<package>/references/`
+6. If the Claude documentation check date in `bundled-skills.manifest` is more
+   than 30 days ago, refresh the Claude reserved names from
+   https://code.claude.com/docs/en/commands (rows marked Skill) and
+   https://code.claude.com/docs/en/skills before other work, then set that
+   date to today.
 
 ## Documentation authority
 
@@ -20,6 +25,7 @@ publishes them to Cursor, Claude Code, and OpenAI Codex.
 | What skills form a package? | `packages.manifest` + package README |
 | Skill instructions          | each skill's `SKILL.md`              |
 | Templates and rubrics       | `skills/<package>/references/`       |
+| Vendor bundled skill names  | `bundled-skills.manifest`            |
 
 ## Adding or removing a skill
 
@@ -51,8 +57,11 @@ Keep shared instructions vendor-neutral. If an agent requires different instruct
 ```
 
 Default targets are `~/.agents/skills` (Cursor + Codex) and `~/.claude/skills`
-(Claude Code). Do not combine `--cursor` and `--agents`. Symlinks point back at
-this clone.
+(Claude Code). The installer backfills missing skills and skips or relinks
+symlinks that already point into this clone. Do not combine `--cursor` and
+`--agents`. If an older install left this repo's links in `~/.cursor/skills`,
+run `./scripts/uninstall.sh --cursor`. Exit `2` means a name overlaps a vendor
+bundled or system skill; the links were still created.
 
 ```bash
 CURSOR_SKILLS=/path/to/skills ./scripts/install.sh --cursor
@@ -74,3 +83,5 @@ AGENTS_SKILLS=/path/to/skills ./scripts/install.sh --agents
 - Do not push to unrelated repositories
 - Do not update git config
 - Installer must abort on foreign clashes; never overwrite existing skills
+- Installer warns (exit 2) when a skill name matches a vendor bundled/system
+  skill; it still links. Exit 1 remains a hard fail.
