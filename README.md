@@ -1,5 +1,10 @@
 # skills
 
+> Moved: this repository is archived in favor of
+> [chrispalmo/agent-config](https://github.com/chrispalmo/agent-config).
+> Agent skills now live under `agent-config/skills/`; use that repo's root
+> installer for skills and rules.
+
 Central repository of Agent Skills (`SKILL.md`) for **Cursor**, **Claude Code**,
 and **OpenAI Codex**.
 
@@ -87,6 +92,13 @@ If a skill name matches a vendor bundled or system skill, install still links an
 Claude names come from `bundled-skills.manifest` (best-effort; refresh from Claude Code docs monthly). Cursor also scans `~/.cursor/skills-cursor`. Codex also scans `$CODEX_HOME/skills/.system` and `/etc/codex/skills`. Exit `0` means no overlap. Exit `1` is a hard failure.
 
 Uninstall removes a destination only when `SKILL.md` is a symlink into this clone. Name matches alone are not enough. If an older install left this repo's links in `~/.cursor/skills`, remove them with `./scripts/uninstall.sh --cursor`.
+
+### Cloud agents
+
+This repository is archived. Use
+[chrispalmo/agent-config](https://github.com/chrispalmo/agent-config) for cloud
+agent setup. Its `scripts/cloud/README.md` contains the environment stub for
+Cursor, Claude Code, and Codex.
 
 ### Windows
 
